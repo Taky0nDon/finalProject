@@ -23,4 +23,4 @@ This is an interactive Dark Fantasy story about a curious hacker that dove a bit
 
 ## Flowchart
 
-[embedmd]:# (mermaid\gameFlow.mmd)
+[embedmd]:# (mermaid\gameFlow.md)
