@@ -1,5 +1,4 @@
-```mermaid
-graph TD;
+flowchart TD;
     %%NODE FLOW%%;
     START --> RUN?;
     RUN? --> |YES| RUN_EXE;
@@ -67,4 +66,3 @@ graph TD;
             It's vageuly medieval. This is your life now.];
     RI[And you thought you were ready for this? Get smited.];
     LEFT_OR_RIGHT{Left or right?};
-```
