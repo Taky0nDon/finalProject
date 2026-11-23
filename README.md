@@ -15,7 +15,11 @@ An interactive, browser-based story in HTML, CSS, and JavaScript that features i
 ### Javon Speller
 
 * CSS
-* 
+* Story & Dialogue Progession
+* Dynamic Scene Visuals
+* Conditional Story Branching
+* Player Status Tracking
+* Interactive Image Hover
 
 ## Application Overview
 
