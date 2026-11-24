@@ -32,7 +32,7 @@ flowchart TD
     %%NODE FLOW%%
     START --> RUN?
     RUN? --> |YES| RUN_EXE
-    RUN? --> |NO| DONT_RUN
+    RUN? --> |NO| DONT_RUN --> END
 
 	%% EYE PATH
     RUN_EXE --> |eye| EYE
@@ -116,7 +116,6 @@ flowchart TD
     term_choice{Enter root command or read logs?}
     term_rewrite[Reality code altered. Escape portal opens.]
     term_logs[Error: You were never the player. System wipe.]
-	portal_choice{Step through the portal or delete demiurge.exe?}
 	portal_choice{Step through the portal or delete demiurge.exe?}
 	system_crash[Critical Error: Reality collapses. Rebooting simulation...]
 
