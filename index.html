@@ -2,10 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Between The Interpolated</title>
+     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Coming soon...</h1>
+      <div id="game-container">
+
+    <form id="player-form">
+      <label for="player-name">Name:</label>
+      <input type="text" id="player-name" name="playerName" required>
+
+        <label for="player-gender">Gender:</label>
+      <select id="player-gender" name="playerGender">
+        <option value="female">Female</option>
+        <option value="male">Male</option>
+        <option value="other">Other</option>
+      </select> 
+        
+      <button type="submit" id="start-btn">Start Story</button>
+    </form>
+
+    <div id="story-container">
+      <p id="scene-title"></p>
+      <p id="story-text"></p>
+      <p id="player-status"></p>
+    </div>
+
+       <div id="button-group">
+      <button type="button" id="choice-1-btn">Choice 1</button>
+      <button type="button" id="choice-2-btn">Choice 2</button>
+    </div>
+      </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
