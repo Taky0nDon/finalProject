@@ -1,0 +1,118 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #0b0d10;
+  color: #d8e2dc;
+  font-family: "Courier New", Courier, monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+
+#game-container {
+  background-color: #12161c;
+  border: 1px solid #2b3544;
+  box-shadow: 0 0 20px rgba(0, 255, 170, 0.08);
+  border-radius: 6px;
+  width: 100%;
+  max-width: 650px;
+  padding: 30px;
+}
+
+
+#player-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed #2b3544;
+}
+
+#player-form label {
+  font-size: 0.9rem;
+  color: #8fa3b0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#player-name,
+#player-gender {
+  background-color: #0b0d10;
+  color: #e0fbfc;
+  border: 1px solid #3d4c63;
+  border-radius: 4px;
+  padding: 10px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+#player-name:focus,
+#player-gender:focus {
+  outline: none;
+  border-color: #00f5d4;
+  box-shadow: 0 0 8px rgba(0, 245, 212, 0.25);
+}
+
+
+#scene-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #00f5d4;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+#story-text {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 18px;
+  min-height: 60px;
+}
+
+#player-status {
+  font-size: 0.85rem;
+  color: #ff5964;
+  margin-bottom: 20px;
+  min-height: 20px;
+}
+
+
+#button-group {
+  display: flex;
+  gap: 12px;
+}
+
+button {
+  background-color: #1b222c;
+  color: #00f5d4;
+  border: 1px solid #00f5d4;
+  border-radius: 4px;
+  padding: 10px 18px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+  background-color: #00f5d4;
+  color: #0b0d10;
+  box-shadow: 0 0 12px rgba(0, 245, 212, 0.4);
+}
+
+#choice-1-btn,
+#choice-2-btn {
+  flex: 1;
+}
+
+.hidden {
+  display: none !important;
+}
