@@ -1,4 +1,4 @@
-# Immaterial Foundry
+# Between the Interpolated
 An interactive, browser-based story in HTML, CSS, and JavaScript that features images, branching choices, and multiple distinct endings. 
 
 ## Team Members and Roles

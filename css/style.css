@@ -110,6 +110,7 @@ button:hover {
 
 #choice-1-btn,
 #choice-2-btn {
+  display: none; /*hide buttons until after form is filled out*/
   flex: 1;
 }
 
