@@ -1,2 +1,6 @@
 ﻿flowchart.md
+pack.json
+package.json
+package-lock.json
+.gitignore
 
