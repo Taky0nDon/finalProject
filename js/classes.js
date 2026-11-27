@@ -15,7 +15,7 @@ class Player {
 }
 
 class Inventory {
-	constructor(contents) {
+	constructor() {
 		this.contents = [];
 	}
 }

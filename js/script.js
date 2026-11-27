@@ -1,3 +1,4 @@
+// TODO: Write functions for each room and control flow that way?
 const history = []; // Array to hold visited paragraph elements
 
 const sceneTitleId = "scene-title";
@@ -6,11 +7,6 @@ const playerStatusId = "player-status";
 const formId = "player-form";
 const next = {
 	value: "",
-};
-const branch = {
-	hasChoice: false,
-	c1: '',
-	c2: ''
 };
 
 // get Element objects
@@ -26,47 +22,43 @@ const choiceBtnArr = Array.from(document.getElementsByClassName("choice-btn"));
 const player = new Player();
 
 function startGame() {
-	if (event) event.preventDefault();
+	console.log("DEBUG: startGame");
 	player.name = document.getElementById("player-name").value;
 	player.gender = document.getElementById("player-gender").value;
-	document.cookie = `userName=${player.name}&charGender=${player.gender}`
+	if (!document.cookie) {
+		document.cookie = `userName=${player.name}&charGender=${player.gender}`;
+	}
 	// Hide form
 	formEl.style.display = "none";
 	// Show choice buttons
 	choiceBtnArr.forEach(function (el) {el.style.display = "flex";});
 	// TODO: Make this dissolve away.
-	changeScene("Between the Interpolated", "", "", branch)
-	branch.hasChoice = true;
-	branch.c1 = "Yes"
-	branch.c2 = "No"
-	changeScene(
-				"The flickering blue light is hypnotic. Red and yellow " +
-				"pixelated letter throb and ask a simple question: ",
+	changeScene(rooms["title"])
 		// Way to make this one a new line without using innerHTML?
-				"DO YOU WANT TO DOWNLOAD DEMIURGE.EXE?",
-				"Curious",
-				branch);
+	changeScene(rooms[0]);
 }
 
 // instead of separate arguments for btn text and branches bool, pass obj?
-function changeScene(title, text, pStatus, branches=branch) {
-	sceneTitleEl.innerText = title;
-	storyTextEl.innerText = text;
-	playerStatusEl.innerText = pStatus;
+function changeScene(room) {
+	console.log(`DEBUG: room: ${room.title}`);
+	sceneTitleEl.innerText = room.title;
+	storyTextEl.innerText = room.text;
+	playerStatusEl.innerText = room.pStatus;
 
 	// Add event listeners to the buttons so we know how to proceed
-	if (branch.hasChoice) {
-		choiceBtnArr[0].innerText = branch.c1;
-		choiceBtnArr[1].innerText = branch.c2;
+	if (room.branch) {
+		// DEBUG
+		console.log(`room: ${room.title}, branch: ${room.branch}`);
+		showChoiceButtons(choiceBtnArr);
+		choiceBtnArr[0].innerText = room.branch.yes[0];
+		choiceBtnArr[1].innerText = room.branch.no[0];
 		choiceBtnArr.forEach(function getChoice(el) {
-			el.addEventListener("click", function (event) {
-				next.value  = event.currentTarget;
-				// TODO: delete debug print statements
-				if (next.value.id === "choice-2-btn") {
-					location.href = "computer-explodes.html";
-				}
-			})
+			el.addEventListener("click", (event) => {
+				makeChoice(room.branch.yes[1], room.branch.no[1]);});
 		})
+	}
+	else {
+		hideChoiceButtons(choiceBtnArr);
 	}
 	return next
 }
@@ -77,10 +69,6 @@ function changeScene(title, text, pStatus, branches=branch) {
 					"Current status: crispy",
 					false)
 */
-function getText(element) {
-	return element.childNodes[0].textContent
-}
-
 
 // Only have to fill out form once.
 let cookies = document.cookie.split("&");
@@ -92,5 +80,8 @@ for (let c of cookies) {
 	}
 }
 
-if (startBtnEl) startBtnEl.addEventListener("click", (event) => {startGame;});
+if (startBtnEl) {
+	startBtnEl.addEventListener("click",
+	function (event) {event.preventDefault; startGame();});
+}
 
