@@ -1,3 +1,21 @@
+// Game loop won't start until all scripts and other assets are loaded.
+window.addEventListener('load', function () {
+	let cookies = document.cookie.split("&");
+	for (let c of cookies) {
+		let cName, cValue;
+		[cName, cValue] = c.split("=");
+		// Only have to fill out form once.
+		if (cName === "userName") {
+			startGame();
+		}
+	}
+
+	if (startBtnEl) {
+		startBtnEl.addEventListener("click",
+		function (event) {event.preventDefault; startGame();});
+	}
+});
+
 // TODO: Write functions for each room and control flow that way?
 const history = []; // Array to hold visited paragraph elements
 
@@ -69,19 +87,4 @@ function changeScene(room) {
 					"Current status: crispy",
 					false)
 */
-
-// Only have to fill out form once.
-let cookies = document.cookie.split("&");
-for (let c of cookies) {
-	let cName, cValue;
-	[cName, cValue] = c.split("=");
-	if (cName === "userName") {
-		startGame();
-	}
-}
-
-if (startBtnEl) {
-	startBtnEl.addEventListener("click",
-	function (event) {event.preventDefault; startGame();});
-}
 
