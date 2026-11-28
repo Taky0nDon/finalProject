@@ -1,3 +1,13 @@
+class RoomManager {
+	constructor(symbols) {
+		this.symbols = symbols;
+	}
+
+	removeSymbol(symbol) {
+		this.symbols = this.symbols.filter((e) => e != symbol); 
+	}
+}
+
 class Player {
 	constructor(name,
 		        gender,
@@ -8,8 +18,8 @@ class Player {
 		this.gender = gender;
 		this.history = history;
 		this.inventory = inventory;
-		this.num_shards = 0;
-		this.paths_taken = [];
+		this.numShards = 0;
+		this.pathsTaken = [];
 		this.cracked = 0;
 	}
 }
@@ -21,14 +31,14 @@ class Inventory {
 }
 
 class Item {
-	constructor(name, description, img_src){
+	constructor(name, description, imgSrc){
 		this.name = name;
 		this.description = description;
-		this.img_src = img_src;
+		this.imgsrc = imgSrc;
 	}
 }
 
-class Stats{
+class stats{
 	constructor(player,
 				history
 		) {

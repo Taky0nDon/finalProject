@@ -40,7 +40,6 @@ const choiceBtnArr = Array.from(document.getElementsByClassName("choice-btn"));
 const player = new Player();
 
 function startGame() {
-	console.log("DEBUG: startGame");
 	player.name = document.getElementById("player-name").value;
 	player.gender = document.getElementById("player-gender").value;
 	if (!document.cookie) {
@@ -52,33 +51,49 @@ function startGame() {
 	choiceBtnArr.forEach(function (el) {el.style.display = "flex";});
 	// TODO: Make this dissolve away.
 	changeScene(rooms["title"])
+	setTimeout(changeScene, 2000, rooms[0]);
 		// Way to make this one a new line without using innerHTML?
-	changeScene(rooms[0]);
+	
 }
 
 // instead of separate arguments for btn text and branches bool, pass obj?
 function changeScene(room) {
-	console.log(`DEBUG: room: ${room.title}`);
+	choiceBtnArr.splice(0, choiceBtnArr.length, ...choiceBtnArr.filter((e) => e !== undefined));
+	// TODO: Should I just create new buttons every time instead
+	// of trying to manage event listeners?
 	sceneTitleEl.innerText = room.title;
 	storyTextEl.innerText = room.text;
 	playerStatusEl.innerText = room.pStatus;
 
+	let choices = [];
+	deleteChoiceButtons(choiceBtnArr);
 	// Add event listeners to the buttons so we know how to proceed
-	if (room.branch) {
+	if (room.branches) {
 		// DEBUG
-		console.log(`room: ${room.title}, branch: ${room.branch}`);
-		showChoiceButtons(choiceBtnArr);
-		choiceBtnArr[0].innerText = room.branch.yes[0];
-		choiceBtnArr[1].innerText = room.branch.no[0];
-		choiceBtnArr.forEach(function getChoice(el) {
-			el.addEventListener("click", (event) => {
-				makeChoice(room.branch.yes[1], room.branch.no[1]);});
-		})
+		for (let branch in room.branches){
+			console.log(Object.keys(room.branches[branch]));
+			console.log(Object.values(room.branches[branch]));
+			if (!room.branches.hasOwnProperty(branch)) continue;
+			let fn = room.branches[branch][1]
+			console.log(`DEBUG: Putting function ${fn} in choices arr`);
+			choices.push(fn);
+			newButton = document.createElement("button");
+			newButton.type = "button"
+			newButton.id = `choice-${choices.length}-btn`;
+			newButton.class = "choice-btn";
+			newButton.innerText = room.branches[branch][0];
+			choiceBtnArr.push(newButton);
+			document.getElementById("button-group").appendChild(newButton);
+		}
 	}
-	else {
-		hideChoiceButtons(choiceBtnArr);
-	}
-	return next
+	
+	choiceBtnArr.forEach(function getChoice(el) {
+		el.addEventListener("click", (event) => {
+			makeChoice(choices);
+		});
+	})
+
+	showChoiceButtons(choiceBtnArr);
 }
 
 /*
